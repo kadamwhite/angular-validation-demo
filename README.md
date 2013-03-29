@@ -16,11 +16,11 @@ Angular automatically adds several classes to `<input>` and `<form>` elements, w
 
 **Binding to form state**
 
-Forms in angular are an instance of `FormController`, and the `name` attribute of the form reveals that instance to the current `$scope`. Leveraging the form and form fields' `$dirty`, `$error` and `$invalid` properties allows you to contextually reveal error messages or deactivate the submit button through the `ng-show` and `ng-disabled` directies.
+Forms in angular are an instance of `FormController`, and the `name` attribute of the form reveals that instance to the current `$scope`. Leveraging the form and form fields' `$dirty`, `$error` and `$invalid` properties allows you to contextually reveal error messages or deactivate the submit button through the `ng-show` and `ng-disabled` directives.
 
 **Custom Validation**
 
-Angular provides out-of-the-box support for common html5 input types and includes directives for validating input elements' `required`, `pattern`, `minlength`, `maxlength`, `min`, and `max` attributes.
+Angular provides out-of-the-box support for common HTML5 input types and includes directives for validating input elements' `required`, `pattern`, `minlength`, `maxlength`, `min`, and `max` attributes.
 
 Custom validators may be created by defining new directives depending on the `ngModel` controller. The "Custom Validation" of the linked documentation shows how to create `integer` and `float` type-validation directives.
 
@@ -28,4 +28,4 @@ Custom validators may be created by defining new directives depending on the `ng
 
 The Angular UI `ui-validate` directive permits idiomatic definition of custom validation controls. By creating a function on the current `scope` which returns `false` when a validation condition fails, you may easily bind one or many custom validation rules to any form element.
 
-`ui-validate-watch` permits you to re-run validation for a field when a specified `scope` property changes. For example, 
+`ui-validate-watch` permits you to re-run validation for a field when a specified `scope` property changes. For example, you can add `ui-validate-watch="'password'"` to the markup for a password confirmation field to automatically run the "do password fields match" validation whenever the user updates the input field with `name="password"`.
