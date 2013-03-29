@@ -1,0 +1,60 @@
+/* ---- List Styles ---- */
+
+.approved-false {
+  color: grey;
+}
+
+/* ---- Form Styles ---- */
+
+form,
+ul {
+  border: 1px dotted #ddd;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 5px 0;
+}
+
+/* ---- Validation Styles ---- */
+
+sup {
+  line-height: 0;
+}
+
+.ng-invalid-required + sup,
+.error {
+  color: red;
+}
+
+.error {
+  font-family: sans-serif;
+  font-size: .8em;
+}
+
+/* A note on AngularJS validation classes:
+ *
+ * If you want your validation styling to only show up once you've first
+ * edited a field, apply it only to items that are .ng-dirty. Note that
+ * validation classes are applied to both the <form> and to each <input>
+ * so you may have to scope your style rules to a particular element type,
+ * either by `input.ng-validation-class` or by `form .ng-validation-class`
+ */
+
+input.ng-dirty.ng-invalid {
+  outline: red auto 1px;
+}
+
+input.ng-dirty.ng-invalid-required {
+  outline: red auto 1px;
+}
+
+/* ---- jQuery UI Datepicker Styles ---- */
+
+#ui-datepicker-div {
+  font-size: 75%;
+}

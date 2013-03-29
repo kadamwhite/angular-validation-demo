@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="validationDemo">
+<head>
+  <meta charset=utf-8 />
+  <title>Angular Validation Demo</title>
+  <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.10.2.custom.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+  <h2>Products</h2>
+  <div ng-controller="ProductCtrl">
+    <span>
+      {{ unapproved() }}
+      of
+      {{ products.length }}
+      approved
+    </span>
+    [ <a href="" ng-click="archive()">clear approved</a> ]
+    <ul class="unstyled">
+      <li ng-repeat="product in products">
+        <input type="checkbox" ng-model="product.approved">
+        <span class="approved-{{product.approved}}">
+          {{ product.quantity | number }}
+          <strong>{{ product.name }}</strong>
+          scheduled from
+          {{ product.startDate | date:'MMM &lsquo;yy' }}
+          to
+          {{product.endDate | date:'MMM &lsquo;yy' }}
+        </span>
+      </li>
+    </ul>
+    <form name="addProductForm" ng-submit="addProduct()">
+      <p>Add Items:</p>
+      <input type="text"
+             ng-model="name"
+             name="name"
+             placeholder="product name"
+             required><sup>*</sup>
+      <input type="number"
+             ng-model="quantity"
+             name="quantity"
+             min="500"
+             placeholder="500 <= number"
+             required><sup>*</sup>
+      <span class="error" ng-show="addProductForm.quantity.$error.future">
+        Quantity must be 500 or more
+      </span>
+      <hr>
+      <input type="text"
+             class="date"
+             ng-pattern="/[0-9\/]*/"
+             ng-model="startDate"
+             name="startDate"
+             placeholder="start date"
+             ui-validate="{
+               future: 'dateInFuture( $value )',
+               dateOrder: 'datesInOrder()'
+             }"
+             ui-validate-watch="'endDate'"
+             ui-date>
+      <span class="error" ng-show="addProductForm.startDate.$error.future">
+        Please pick a date in the future
+      </span>
+      <input type="text"
+             class="date"
+             ng-pattern="/[0-9\/]*/"
+             ng-model="endDate"
+             name="endDate"
+             placeholder="end date"
+             ui-validate="{
+               future: 'dateInFuture( $value )',
+               dateOrder: 'datesInOrder()'
+             }"
+             ui-validate-watch="'startDate'"
+             ui-date>
+      <span class="error" ng-show="addProductForm.endDate.$error.future">
+        Please pick a date in the future
+      </span>
+      <span class="error" ng-show="addProductForm.$error.dateOrder">
+        Start date must be before end date
+      </span>
+      <hr>
+      <input type="submit"
+             value="schedule"
+             ng-disabled="addProductForm.$invalid">
+    </form>
+  </div>
+  <script src="lib/jquery-1.9.1.js"></script>
+  <script src="lib/jquery-ui-1.10.2.custom.js"></script>
+  <script src="lib/angular.js"></script>
+  <script src="lib/angular-ui.custom.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
