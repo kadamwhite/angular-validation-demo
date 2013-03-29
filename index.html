@@ -31,55 +31,65 @@
     </ul>
     <form name="addProductForm" ng-submit="addProduct()">
       <p>Add Items:</p>
-      <input type="text"
-             ng-model="name"
-             name="name"
-             placeholder="product name"
-             required><sup>*</sup>
-      <input type="number"
-             ng-model="quantity"
-             name="quantity"
-             min="500"
-             placeholder="500 <= number"
-             required><sup>*</sup>
-      <span class="error" ng-show="addProductForm.quantity.$error.min">
-        Quantity must be 500 or more
-      </span>
-      <hr>
-      <input type="text"
-             class="date"
-             ng-pattern="/[0-9\/]*/"
-             ng-model="startDate"
-             name="startDate"
-             placeholder="start date"
-             ui-validate="{
-               future: 'dateInFuture( $value )',
-               dateOrder: 'datesInOrder()'
-             }"
-             ui-validate-watch="'endDate'"
-             ui-date>
-      <span class="error" ng-show="addProductForm.startDate.$error.future">
-        Please pick a date in the future
-      </span>
-      <input type="text"
-             class="date"
-             ng-pattern="/[0-9\/]*/"
-             ng-model="endDate"
-             name="endDate"
-             placeholder="end date"
-             ui-validate="{
-               future: 'dateInFuture( $value )',
-               dateOrder: 'datesInOrder()'
-             }"
-             ui-validate-watch="'startDate'"
-             ui-date>
-      <span class="error" ng-show="addProductForm.endDate.$error.future">
-        Please pick a date in the future
-      </span>
-      <span class="error" ng-show="addProductForm.$error.dateOrder">
-        Start date must be before end date
-      </span>
-      <hr>
+      <p>
+        <input type="text"
+               ng-model="name"
+               name="name"
+               placeholder="product name"
+               required>
+        <sup>*</sup>
+      </p>
+      <p>
+        <input type="number"
+               ng-model="quantity"
+               name="quantity"
+               min="500"
+               placeholder="500 <= number"
+               required>
+        <sup>*</sup>
+        <span class="error" ng-show="addProductForm.quantity.$error.min">
+          Quantity must be 500 or more
+        </span>
+      </p>
+      <p>
+        <input type="text"
+               class="date"
+               ng-pattern="/[0-9\/]*/"
+               ng-model="startDate"
+               name="startDate"
+               placeholder="start date"
+               ui-validate="{
+                 future: 'dateInFuture( $value )',
+                 dateOrder: 'datesInOrder()'
+               }"
+               ui-validate-watch="'endDate'"
+               ui-date>
+        <span class="error" ng-show="addProductForm.startDate.$error.future">
+          Please pick a date in the future
+        </span>
+      </p>
+      <p>
+        <input type="text"
+               class="date"
+               ng-pattern="/[0-9\/]*/"
+               ng-model="endDate"
+               name="endDate"
+               placeholder="end date"
+               ui-validate="{
+                 future: 'dateInFuture( $value )',
+                 dateOrder: 'datesInOrder()'
+               }"
+               ui-validate-watch="'startDate'"
+               ui-date>
+        <span class="error" ng-show="addProductForm.endDate.$error.future">
+          Please pick a date in the future
+        </span>
+      </p>
+      <p>
+        <span class="error" ng-show="addProductForm.$error.dateOrder">
+          Start date must be before end date
+        </span>
+      </p>
       <input type="submit"
              value="schedule"
              ng-disabled="addProductForm.$invalid">
