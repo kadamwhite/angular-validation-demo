@@ -42,7 +42,7 @@
              min="500"
              placeholder="500 <= number"
              required><sup>*</sup>
-      <span class="error" ng-show="addProductForm.quantity.$error.future">
+      <span class="error" ng-show="addProductForm.quantity.$error.min">
         Quantity must be 500 or more
       </span>
       <hr>
